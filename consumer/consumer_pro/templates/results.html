@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Results</title>
+</head>
+
+<body>
+    <header>
+        <h1>Game Results</h1>
+    </header>
+    <main>
+        <section aria-label="Game list" role="region">
+            {% if games %}
+            <table>
+                <caption>Game Results</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Total Copies Sold</th>
+                        <th scope="col">Series</th>
+                        <th scope="col">Release Date</th>
+                        <th scope="col">Genre(s)</th>
+                        <th scope="col">Developer(s)</th>
+                        <th scope="col">Publisher(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in games %}
+                    <tr>
+                        <td>{{ game.name }}</td>
+                        <td>{{ game.total_copies_sold }}</td>
+                        <td>{{ game.series }}</td>
+                        <td>{{ game.release_date }}</td>
+                        <td>{{ game.genre }}</td>
+                        <td>{{ game.developer }}</td>
+                        <td>{{ game.publisher }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p aria-label="No games found" role="alert">No games found. Please try searching again or check back later for updates.</p>
+            {% endif %}
+        </section>
+    </main>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+
+        header {
+            background-color: #f0f0f0;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        caption {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        p[aria-label="No games found"] {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+            section {
+                width: 100%;
+            }
+            table {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</body>
+
+</html>
